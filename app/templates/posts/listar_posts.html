@@ -3,6 +3,15 @@
 {% block content%}
 <div class="columns">
     <div class="column is-offset-3 is-6">
+        <!-- Botón para crear nuevo post -->
+        <div class="has-text-right" style="margin-bottom: 2rem;">
+            <a href="{{ url_for('posts.add_post') }}" class="button is-success is-medium">
+                <span class="icon">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span>Nuevo Post</span>
+            </a>
+        </div>
 
         <br><br>
         {% for post in posts %}
@@ -23,9 +32,5 @@
         {% endfor %}
 
     </div>
-
 </div>
-
-
-
 {% endblock%}
