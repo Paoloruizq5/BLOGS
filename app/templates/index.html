@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html class="theme-light" style="background-color: gainsboro;">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog de Noticias - Panel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <script src="https://kit.fontawesome.com/ee9903c79f.js" crossorigin="anonymous"></script>
+    <style>
+        .panel-card {
+            transition: transform 0.3s;
+        }
+        .panel-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container">
+                <div class="has-text-centered mb-6">
+                    <h1 class="title is-1">Blog de Noticias</h1>
+                    <h2 class="subtitle is-3">Lo más reciente en México</h2>
+                </div>
+
+                <div class="columns is-centered">
+                    <div class="column is-8">
+                        <div class="box">
+                            <h3 class="title is-4 has-text-centered">Panel principal</h3>
+                            
+                            <!-- Tarjeta Noticias -->
+                            <div class="card panel-card mb-5">
+                                <div class="card-content">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <span class="icon is-large has-text-info">
+                                                <i class="fas fa-newspaper fa-2x"></i>
+                                            </span>
+                                        </div>
+                                        <div class="media-content">
+                                            <p class="title is-4">Administrar Noticias</p>
+                                            <p class="subtitle is-6">Crear, modificar, eliminar</p>
+                                        </div>
+                                        <div class="media-right">
+                                            <a href="{{ url_for('posts.listar_posts') }}" class="button is-info">
+                                                <span>Acceder</span>
+                                                <span class="icon">
+                                                    <i class="fas fa-arrow-right"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Tarjeta Categorías -->
+                            <div class="card panel-card">
+                                <div class="card-content">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <span class="icon is-large has-text-success">
+                                                <i class="fas fa-tags fa-2x"></i>
+                                            </span>
+                                        </div>
+                                        <div class="media-content">
+                                            <p class="title is-4">Administrar Categorías</p>
+                                            <p class="subtitle is-6">Crear, modificar, eliminar</p>
+                                        </div>
+                                        <div class="media-right">
+                                            <a href="{{ url_for('posts.list_categories') }}" class="button is-success">
+                                                <span>Acceder</span>
+                                                <span class="icon">
+                                                    <i class="fas fa-arrow-right"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
