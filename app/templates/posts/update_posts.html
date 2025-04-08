@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Editar Post{% endblock %}
+
+{% block content %}
+<div class="columns">
+    <div class="column is-offset-3 is-6">
+        <div class="card">
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-content">
+                        <p class="title is-4">Editar Post</p>
+                    </div>
+                </div>
+                <div class="content">
+                    <form method="POST">
+                        <div class="field">
+                            <label class="label">Título</label>
+                            <div class="control">
+                                <input class="input" type="text" name="title" value="{{ post.title }}" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Categoría</label>
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select name="category_id" required>
+                                        {% for category in categories %}
+                                        <option value="{{ category.id }}" 
+                                                {% if category.id == post.category_id %}selected{% endif %}>
+                                            {{ category.name }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Contenido</label>
+                            <div class="control">
+                                <textarea class="textarea" name="content" required>{{ post.content }}</textarea>
+                            </div>
+                        </div>
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button type="submit" class="button is-success">Guardar</button>
+                            </div>
+                            <div class="control">
+                                <a href="{{ url_for('posts.listar_posts') }}" class="button is-danger">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

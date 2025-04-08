@@ -1,36 +1,71 @@
 {% extends 'base.html' %}
 {% block title%} Blog de Noticias{% endblock %}
 {% block content%}
-<div class="columns">
-    <div class="column is-offset-3 is-6">
-        <!-- Botón para crear nuevo post -->
-        <div class="has-text-right" style="margin-bottom: 2rem;">
-            <a href="{{ url_for('posts.add_post') }}" class="button is-success is-medium">
-                <span class="icon">
-                    <i class="fas fa-plus"></i>
-                </span>
-                <span>Nuevo Post</span>
-            </a>
-        </div>
-
-        <br><br>
-        {% for post in posts %}
-        <div class="card">
-            <div class="card-content">
-                <div class="media">
-                    <div class="media-content">
-                        <p class="title is-4">{{ post.title }}</p>
-                        <p class="subtitle is-5">{{ post.category.name }}</p>
-                    </div>
-                </div>
-                <div class="content">
-                    {{ post.content }}
-                    <br><br>
+<div class="columns is-centered">
+    <div class="column is-8">
+        <!-- Barra superior con botones -->
+        <div class="level">
+            <div class="level-left">
+                <a href="{{ url_for('index') }}" class="button is-light">
+                    <span class="icon">
+                        <i class="fas fa-home"></i>
+                    </span>
+                    <span>Inicio</span>
+                </a>
+            </div>
+            <div class="level-right">
+                <div class="buttons">
+                    <a href="{{ url_for('posts.list_categories') }}" class="button is-info">
+                        <span class="icon">
+                            <i class="fas fa-tags"></i>
+                        </span>
+                        <span>Categorías</span>
+                    </a>
+                    <a href="{{ url_for('posts.add_post') }}" class="button is-success">
+                        <span class="icon">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span>Nuevo Post</span>
+                    </a>
                 </div>
             </div>
         </div>
-        {% endfor %}
 
+        <div class="mt-6">
+            {% for post in posts %}
+            <div class="card mb-5">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4 has-text-primary">{{ post.title }}</p>
+                            <p class="subtitle is-6 has-text-grey">
+                                <span class="tag is-info is-light">{{ post.category.name }}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="content mt-4">
+                        <p>{{ post.content }}</p>
+                    </div>
+                    <div class="buttons mt-5">
+                        <a href="{{ url_for('posts.edit_post', id=post.id) }}" class="button is-warning is-light">
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <span>Editar</span>
+                        </a>
+                        <form action="{{ url_for('posts.delete_post', id=post.id) }}" method="POST" class="ml-3">
+                            <button type="submit" class="button is-danger is-light">
+                                <span class="icon">
+                                    <i class="fas fa-trash-alt"></i>
+                                </span>
+                                <span>Eliminar</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock%}

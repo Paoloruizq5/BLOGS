@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv 
+from flask import render_template
 
 # Inicializar extensiones
 db = SQLAlchemy()
@@ -11,6 +12,8 @@ load_dotenv()
 
 #crear instancia
 app =  Flask(__name__)
+
+app.config['SECRET_KEY'] = '3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d'  # 32 caracteres aleatorios
 
     
     # Configuración de la base de datos
@@ -34,4 +37,4 @@ app.register_blueprint(posts_bp, url_prefix='/posts')
 #Ruta principal home
 @app.route('/')
 def index():
-    return 'Hola mundo'
+    return render_template('index.html')
